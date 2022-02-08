@@ -57,3 +57,6 @@ For this exercise, imagine that we have devices that record an integer at arbitr
 1. Code coverage
 1. Github actions
 1. Deploy to heroku
+1. Despite the fact it's out of scope I would add:
+* Authentication using JWT (Json Web Tokens)
+* UI to use the api
