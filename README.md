@@ -5,6 +5,7 @@ For this exercise, imagine that we have devices that record an integer at arbitr
 ## How to use
 
 1. Clone this repository: `git@github.com:axelpontetto/brightwheel-api.git`
+1. Install the dependencies: `Bundle install`
 1. Create the database: `rails db:create && rails db:migrate`
 1. Run `rspec` to check all tests are passing
 1. Run the server: `rails s`
