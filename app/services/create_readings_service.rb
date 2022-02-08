@@ -5,9 +5,8 @@ class CreateReadingsService
   end
 
   def call
-    @device = Device.find_or_create_by!(uuid: uuid)
-    @readings = @device.readings.create!(new_readings_params)
-    [@device, @readings]
+    readings = device.readings.create!(new_readings_params)
+    [device, readings]
   end
 
   private
@@ -15,6 +14,10 @@ class CreateReadingsService
   attr_reader :uuid, :readings_params
 
   def new_readings_params
-    readings_params.select { |rp| !@device.readings.exists?(timestamp: rp[:timestamp], count: rp[:count]) }
+    readings_params.select { |rp| !device.readings.exists?(timestamp: rp[:timestamp], count: rp[:count]) }
+  end
+
+  def device
+    @device ||= Device.find_or_create_by!(uuid: uuid)
   end
 end
