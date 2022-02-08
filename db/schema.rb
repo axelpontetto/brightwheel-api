@@ -10,6 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2022_02_08_122822) do
 
+  create_table "devices", force: :cascade do |t|
+    t.string "uuid", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uuid"], name: "index_devices_on_uuid", unique: true
+  end
+
+  create_table "readings", force: :cascade do |t|
+    t.datetime "timestamp", precision: 6, null: false
+    t.integer "count", null: false
+    t.integer "device_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["device_id"], name: "index_readings_on_device_id"
+  end
+
+  add_foreign_key "readings", "devices"
 end
