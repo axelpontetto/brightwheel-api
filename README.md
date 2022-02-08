@@ -49,7 +49,7 @@ For this exercise, imagine that we have devices that record an integer at arbitr
 
 1. According to the requirements, the input could be malformed, but since I added validations to the models I think it's not necessary to create an extra service to validate the input itself. In the case we must validate the input because some specific reason I can use the dry-validation gem, so that I can validate the json schema before processing it.
 
-1. Since it's not specified I decided to create the device if it doesn't exist before creating the readings.
+1. Since it's not specified I decided to create the device if it doesn't exist before creating the readings. Since I'm using `find_or_create_by!` there is an edge case if two request arrives at the same time. In that case the readings for the second request could be lost. This situation could be fixed using background jobs with a retry or `create_or_find_by!` but it has some performance problems.
 
 1. In the device table add added a string field called uuid to simplify things. If that's not enough I could replace the original id with an uuid.
 
